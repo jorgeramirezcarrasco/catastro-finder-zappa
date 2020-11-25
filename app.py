@@ -1,7 +1,10 @@
 from flask import Flask, Response, request
 import json
 from catastro_finder import CatastroFinder
+from flask_cors import CORS
+
 app = Flask(__name__)
+cors = CORS(app)
 
 @app.route("/get_provincias",methods=['POST']) 
 def get_provincias():

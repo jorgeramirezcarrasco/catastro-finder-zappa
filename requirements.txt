@@ -9,6 +9,7 @@ chardet==3.0.4
 click==7.1.2
 durationpy==0.5
 Flask==1.1.2
+Flask-Cors==3.0.9
 future==0.18.2
 hjson==3.0.2
 idna==2.10
@@ -32,7 +33,7 @@ toml==0.10.2
 tqdm==4.53.0
 troposphere==2.6.3
 urllib3==1.26.2
-Werkzeug==0.16.1
+Werkzeug==1.0.1
 wsgi-request-logger==0.4.6
 zappa==0.52.0
 zipp==3.4.0
