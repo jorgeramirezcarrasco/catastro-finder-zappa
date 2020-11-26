@@ -22,21 +22,21 @@ def get_municipios():
 
 
 @app.route("/get_vias",methods=['POST']) 
-def get_vias(code_provincia, code_municipio, input_via):
+def get_vias():
     data = request.json
-    if not data or not code_provincia or not code_municipio or not input_via:
+    if not data or not "code_provincia" in data or not "code_municipio" in data or not "input_via" in data:
         return Response("missing input")
     else:
-        via_results = CatastroFinder().get_vias(code_provincia,code_municipio,input_via)
+        via_results = CatastroFinder().get_vias(data["code_provincia"],data["code_municipio"],data["input_via"])
         return Response(json.dumps(via_results),  mimetype='application/json')
 
 @app.route("/search_inmueble",methods=['POST']) 
-def search_inmueble(selected_provincia, selected_municipio, via_result, via_numero):
+def search_inmueble():
     data = request.json
-    if not data or not selected_provincia or not selected_municipio or not via_result or not via_numero:
+    if not data or not "selected_provincia" in data or not "selected_municipio" in data or not "via_result" in data or not "via_numero" in data:
         return Response("missing input")
     else:
-        inmueble_results = CatastroFinder().search_inmueble(via_result,via_numero,selected_provincia,selected_municipio)
+        inmueble_results = CatastroFinder().search_inmueble(data["via_result"],data["via_numero"],data["selected_provincia"],data["selected_municipio"])
         return Response(json.dumps(inmueble_results),  mimetype='application/json')
 
 if __name__ == "__main__":
