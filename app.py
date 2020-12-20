@@ -39,6 +39,15 @@ def search_property():
         inmueble_results = CatastroFinder().search_inmueble(data["street_result"],data["street_number"],data["selected_province"],data["selected_municipality"])
         return Response(json.dumps(inmueble_results),  mimetype='application/json')
 
+@app.route("/get_postal_code",methods=['POST']) 
+def get_postal_code():
+    data = request.json
+    if not data or not "province" in data or not "municipality" in data or not "rc" in data:
+        return Response("missing input")
+    else:
+        cp = CatastroFinder().get_cp(data["province"],data["municipality"],data["rc"])
+        return Response(json.dumps({"Postal Code":cp}),  mimetype='application/json')
+
 if __name__ == "__main__":
     app.run()
     
