@@ -48,6 +48,15 @@ def get_postal_code():
         cp = CatastroFinder().get_cp(data["province"],data["municipality"],data["rc"])
         return Response(json.dumps({"Postal Code":cp}),  mimetype='application/json')
 
+@app.route("/get_lat_lon",methods=['POST']) 
+def get_lat_lon():
+    data = request.json
+    if not data or not "rc" in data:
+        return Response("missing input")
+    else:
+        lat, lon = CatastroFinder().get_lat_lon(data["rc"])
+        return Response(json.dumps({"lat":lat,"lon":lon}),  mimetype='application/json')
+
 if __name__ == "__main__":
     app.run()
     
